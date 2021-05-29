@@ -28,15 +28,15 @@
         <div class="nav-wrapper">
           <ul id="nav-mobile" class="left hide-on-med-and-down">
             <a href="<?= url('login') ?>" class="brand-logo right">Loggin/Registrarse</a>
-            <li><a href="">Categorias</a></li>
-            <li><a href="">Destacados</a></li>
-            <li><a href="">Nuevos</a></li>
-            <li><a href="">Ofertas</a></li>
+            <li><a href="<?= url('categorias') ?>">Categorias</a></li>
+            <li><a href="<?= url('Destacados') ?>">Destacados</a></li>
+            <li><a href="<?= url('Nuevos') ?>">Nuevos</a></li>
+            <li><a href="<?= url('Ofertas') ?>">Ofertas</a></li>
           </ul>
         </div>
       </nav>
     <div class="container ">
-        @yield('productos')
+        @yield('cuerpo')
     </div>
     <footer class="page-footer">
         <div class="container">

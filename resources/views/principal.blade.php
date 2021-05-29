@@ -1,5 +1,5 @@
 @extends('plantilla')
-@section('productos')
+@section('cuerpo')
 <div class="row">
     <div class="col s3 m3 l3">
       <div class="card small">
