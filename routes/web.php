@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\C_Articulos;
+use App\Models\Articulos;
 use App\Models\Categorias;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::any('/', function () {
-    return view('principal');
+    $categorias=Categorias::getCategorias();
+    return view('categorias',['categorias'=>$categorias]);
 });
 Route::any('/inicio', function () {
     return view('principal');
@@ -57,6 +61,46 @@ Route::any('/eliminar-producto', function () {
 Route::any('/editar-producto', function () {
     return view('editar-producto',['titulo'=>'Productos','seccion'=>'producto']);
 });
-// Route::any('/tabla', function () {
-//     return view('tabla',['array'=>Categorias::getRegistros()]);
-// });
+Route::any('/ps', function () {
+    $articulos=Articulos::getArticulos(0);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'suelo','titulo'=>'Pinturas para suelo']);
+});
+Route::any('/ppls', function () {
+    $articulos=Articulos::getArticulos(1);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'plasticas','titulo'=>'Pinturas Plasticas']);
+});
+Route::any('/pf', function () {
+    $articulos=Articulos::getArticulos(2);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'fachada','titulo'=>'Pinturas para fachadas']);
+});
+Route::any('/pps', function () {
+    $articulos=Articulos::getArticulos(3);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'piscina','titulo'=>'Pinturas para piscinas']);
+});
+Route::any('/pm', function () {
+    $articulos=Articulos::getArticulos(4);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'madera','titulo'=>'Pinturas para madera']);
+});
+Route::any('/pmt', function () {
+    $articulos=Articulos::getArticulos(5);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'metal','titulo'=>'Pinturas para metal']);
+});
+Route::any('/pazu', function () {
+    $articulos=Articulos::getArticulos(6);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'azulejos','titulo'=>'Pinturas para azulejos']);
+});
+Route::any('/pesp', function () {
+    $articulos=Articulos::getArticulos(7);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'especiales','titulo'=>'Pinturas especiales']);
+});
+Route::any('/psp', function () {
+    $articulos=Articulos::getArticulos(8);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'spray','titulo'=>'Pinturas en spray']);
+});
+Route::any('/dis', function () {
+    $articulos=Articulos::getArticulos(9);
+    return view('articulos',['articulos'=>$articulos,'categoria'=>'disolventes','titulo'=>'Disolventes']);
+});
+Route::any('/info_articulo', function (Request $req) {
+    return C_Articulos::showArticulo($req->get('codigo'),$req->get('categoria'));
+});

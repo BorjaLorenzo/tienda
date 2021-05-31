@@ -13,4 +13,8 @@ class Categorias extends Model
         $categorias=DB::table('categorias')->get();
         return $categorias;
     }
+    public static function getCategoria($id){
+        $articulos=DB::table('categorias')->where('id','=',$id)->get();
+        return $articulos;
+    }
 }

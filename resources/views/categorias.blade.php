@@ -12,7 +12,7 @@
         <p>{{$cat->anuncio}}</p>
       </div>
       <div class="card-action">
-        <a href="#">{{$cat->nombre}}</a>
+        <a href="<?= url($cat->codigo)?>">{{$cat->nombre}}</a>
       </div>
     </div>
   </div>

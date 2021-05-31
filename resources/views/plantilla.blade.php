@@ -32,6 +32,7 @@
             <li><a href="<?= url('Destacados') ?>">Destacados</a></li>
             <li><a href="<?= url('Nuevos') ?>">Nuevos</a></li>
             <li><a href="<?= url('Ofertas') ?>">Ofertas</a></li>
+            <li><a href="<?= url('Carrito') ?>"><i class="large material-icons">add_shopping_cart</i></a></li>
           </ul>
         </div>
       </nav>
