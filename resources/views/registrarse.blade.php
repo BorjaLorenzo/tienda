@@ -53,6 +53,18 @@
             ">
         </div>
         <div class="col s4 offset-s4">
+            Provincia:
+            <input type="text" name="provincia" value="<?= 
+            $retVal = (isset($_POST['provincia'])) ? $_POST['provincia'] : '' ; ?>
+            ">
+        </div>
+        <div class="col s4 offset-s4">
+            Poblacion:
+            <input type="text" name="poblacion" value="<?= 
+            $retVal = (isset($_POST['poblacion'])) ? $_POST['poblacion'] : '' ; ?>
+            ">
+        </div>
+        <div class="col s4 offset-s4">
             Codigo Postal:
             <input type="text" name="cp" value="<?= 
             $retVal = (isset($_POST['cp'])) ? $_POST['cp'] : '' ; ?>

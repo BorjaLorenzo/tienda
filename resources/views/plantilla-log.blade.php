@@ -16,7 +16,7 @@
     <nav>
         <div class="nav-wrapper">
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <a class="brand-logo right" href="<?= url('inicio'); ?>"><i class="material-icons left">arrow_back</i>Volver a la pagina</a>
+            <a class="brand-logo right" href="<?= url('Destacados'); ?>"><i class="material-icons left">arrow_back</i>Volver a la pagina</a>
             <li><a href="login">Login</a></li>
             <li><a href="registrarse">Registrate</a></li>
           </ul>

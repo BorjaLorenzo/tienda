@@ -24,9 +24,6 @@ Route::any('/', function () {
     $categorias=Categorias::getCategorias();
     return view('categorias',['categorias'=>$categorias]);
 });
-Route::any('/inicio', function () {
-    return view('principal');
-});
 Route::any('/adm', function () {
     return view('menu-administrador');
 });
@@ -102,5 +99,18 @@ Route::any('/dis', function () {
     return view('articulos',['articulos'=>$articulos,'categoria'=>'disolventes','titulo'=>'Disolventes']);
 });
 Route::any('/info_articulo', function (Request $req) {
-    return C_Articulos::showArticulo($req->get('codigo'),$req->get('categoria'));
+    $articulo=Articulos::getArticulo($req->get('codigo'));
+    return view('info_articulo',['art'=>$articulo]);
+});
+Route::any('/Ofertas', function () {
+    $ofertas=Articulos::getOfertas();
+    return view('articulos',['articulos'=>$ofertas,'titulo'=>'Ofertas']);
+});
+Route::any('/Destacados', function () {
+    $ofertas=Articulos::getDestacados();
+    return view('articulos',['articulos'=>$ofertas,'titulo'=>'Destacados']);
+});
+Route::any('/Nuevos', function () {
+    $nuevos=Articulos::getNuevos();
+    return view('articulos',['articulos'=>$nuevos,'titulo'=>'Nuevos']);
 });

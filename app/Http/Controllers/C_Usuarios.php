@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categorias;
 
-class C_Categorias extends Controller
+class C_Usuarios extends Controller
 {
-    
+    //
 }
