@@ -31,7 +31,7 @@ class Articulos extends Model
     public static function getNuevos(){
         $hoy=getdate();
         $fecha=''.$hoy["year"].'-'.$hoy["mon"].'-'.$hoy["mday"].' '.$hoy["hours"].':'.$hoy["minutes"].':'.$hoy["seconds"].'';
-        $nuevos=DB::table('articulos')->where('created_at','>',$fecha)->orderBy('created_at')->get();
+        $nuevos=DB::table('articulos')->where('created_at','<',$fecha)->orderBy('created_at')->get();
         return $nuevos;
     }
 }

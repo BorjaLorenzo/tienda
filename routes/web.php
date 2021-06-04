@@ -27,12 +27,6 @@ Route::any('/', function () {
 Route::any('/adm', function () {
     return view('menu-administrador');
 });
-Route::any('/login', function () {
-    return view('login');
-});
-Route::any('/registrarse', function () {
-    return view('registrarse');
-});
 Route::any('/categorias', function () {
     $categorias=Categorias::getCategorias();
     return view('categorias',['categorias'=>$categorias]);
@@ -114,3 +108,8 @@ Route::any('/Nuevos', function () {
     $nuevos=Articulos::getNuevos();
     return view('articulos',['articulos'=>$nuevos,'titulo'=>'Nuevos']);
 });
+Route::resource('/carrito', 'CartController');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
