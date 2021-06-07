@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Articulos;
-use Darryldecode\Cart\Cart;
+use Cart;
 
 class CartController extends Controller
 {
@@ -36,6 +37,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        $idUsuario=session('id');
         Cart::add(array(
             'id' => $request->id ? $request->id : '1', // inique row ID
             'name' => $request->name ? $request->name : 'example',

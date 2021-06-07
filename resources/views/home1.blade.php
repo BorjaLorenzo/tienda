@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col">
-                <form method="POST" action="{{route('cart.store')}}">
+                <form method="POST" action="">
                     @csrf
                     <div class="form-group">
                         <label for="id">ID</label>
@@ -41,52 +41,45 @@
                     <button type="submit" class="btn btn-primary">Agregar al carrito</button>
                 </form>
             </div>
-        </div>
+        </div> --}}
         <div class="row">
             @if (!Cart::isEmpty())
-<table class="table">
-    <thead>
-        <tr>
-            <th sc ope="col">Accion</th>
-            <th sc ope="col">#ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Atributos</th>
-            <th scope="row">
-                <form method="POST" action="{{route('cart.destroy',$item->id)}}">
-                   @method('DELETE')
-                   @csrf
-                   <button type="submit">Eliminar</button>
-               </form>
-         </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Cart::getContent() as $item)
-        <tr>
-            <th scope="row">
-                <button>Eliminar</button>
-            </th>
-            <th scope="row">{{$item->id}}</th>
-            <td>{{$item->name}}</td>
-            <td>{{$item->price}}</td>
-            <td>{{$item->quantity}}</td>
-            <td>
-                @foreach ($item->attributes as $key => $attribute)
-                {{$key}}: {{$attribute}}.
-                @endforeach
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
- 
-@endif
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Accion</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="row">
+                                <form method="POST" action="{{url('eliminarCarrito')}}">
+                                {{-- @method('DELETE') --}}
+                                @csrf
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Cart::getContent() as $item)
+                        <tr>
+                            <th scope="row">
+                                <button>Eliminar</button>
+                            </th>
+
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->price}}</td>
+                            <td>{{$item->quantity}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+        </div>
 <div class="row"><table class="table">
     <thead>
               <tr>
-                  <th sc ope="col">Items</th>
+                  <th sc ope="col">Articulos</th>
                   <th sc ope="col">Sub total</th>
                   <th scope="col">Total</th>
                </tr>

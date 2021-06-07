@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\C_Articulos;
-use App\Models\Articulos;
-use App\Models\Categorias;
+use App\Http\Controllers\C_Categorias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,95 +20,59 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::any('/', function () {
-    $categorias=Categorias::getCategorias();
-    return view('categorias',['categorias'=>$categorias]);
+Route::get('/', function () {
+    return C_Articulos::showDestacados();
 });
-Route::any('/adm', function () {
-    return view('menu-administrador');
+Route::get('/categorias', function () {
+    return C_Categorias::showCategorias();
 });
-Route::any('/categorias', function () {
-    $categorias=Categorias::getCategorias();
-    return view('categorias',['categorias'=>$categorias]);
+Route::get('/ps', function () {
+    return C_Articulos::showArticulos(0,'suelos','Pinturas para suelo');
 });
-Route::any('/categoria-conf', function () {
-    return view('categoria-conf');
+Route::get('/ppls', function () {
+    return C_Articulos::showArticulos(1,'plasticas','Pinturas plasticas');
 });
-Route::any('/añadir-categoria', function () {
-    return view('añadir-categoria',['titulo'=>'Categorias','seccion'=>'categoria']);
+Route::get('/pf', function () {
+    return C_Articulos::showArticulos(2,'fachada','Pinturas para fachadas');
 });
-Route::any('/eliminar-categoria', function () {
-    return view('eliminar-categoria',['titulo'=>'Categorias','seccion'=>'categoria']);
+Route::get('/pps', function () {
+    return C_Articulos::showArticulos(3,'piscina','Pinturas para piscinas');
 });
-Route::any('/editar-categoria', function () {
-    return view('editar-categoria',['titulo'=>'Categorias','seccion'=>'categoria']);
+Route::get('/pm', function () {
+    return C_Articulos::showArticulos(4,'madera','Pinturas para madera');
 });
-Route::any('/añadir-producto', function () {
-    return view('añadir-producto',['titulo'=>'Productos','seccion'=>'producto']);
+Route::get('/pmt', function () {
+    return C_Articulos::showArticulos(5,'metal','Pinturas para metal');
 });
-Route::any('/eliminar-producto', function () {
-    return view('eliminar-producto',['titulo'=>'Productos','seccion'=>'producto']);
+Route::get('/pazu', function () {
+    return C_Articulos::showArticulos(6,'azulejos','Pinturas para azulejos');
 });
-Route::any('/editar-producto', function () {
-    return view('editar-producto',['titulo'=>'Productos','seccion'=>'producto']);
+Route::get('/pesp', function () {
+    return C_Articulos::showArticulos(7,'especiales','Pinturas especiales');
 });
-Route::any('/ps', function () {
-    $articulos=Articulos::getArticulos(0);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'suelo','titulo'=>'Pinturas para suelo']);
+Route::get('/psp', function () {
+    return C_Articulos::showArticulos(8,'spray','Pinturas en spray');
 });
-Route::any('/ppls', function () {
-    $articulos=Articulos::getArticulos(1);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'plasticas','titulo'=>'Pinturas Plasticas']);
+Route::get('/dis', function () {
+    return C_Articulos::showArticulos(9,'disolventes','Disolventes');
 });
-Route::any('/pf', function () {
-    $articulos=Articulos::getArticulos(2);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'fachada','titulo'=>'Pinturas para fachadas']);
+Route::get('/info_articulo', function (Request $req) {
+    return C_Articulos::infoArticulo($req->get('codigo'));
 });
-Route::any('/pps', function () {
-    $articulos=Articulos::getArticulos(3);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'piscina','titulo'=>'Pinturas para piscinas']);
+Route::get('/Ofertas', function () {
+    return C_Articulos::showOfertas();
 });
-Route::any('/pm', function () {
-    $articulos=Articulos::getArticulos(4);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'madera','titulo'=>'Pinturas para madera']);
+Route::get('/Destacados', function () {
+    return C_Articulos::showDestacados();
 });
-Route::any('/pmt', function () {
-    $articulos=Articulos::getArticulos(5);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'metal','titulo'=>'Pinturas para metal']);
+Route::get('/Nuevos', function () {
+    return C_Articulos::showNuevos();
 });
-Route::any('/pazu', function () {
-    $articulos=Articulos::getArticulos(6);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'azulejos','titulo'=>'Pinturas para azulejos']);
+Route::post('/eliminarCarrito', function () {
+   
 });
-Route::any('/pesp', function () {
-    $articulos=Articulos::getArticulos(7);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'especiales','titulo'=>'Pinturas especiales']);
-});
-Route::any('/psp', function () {
-    $articulos=Articulos::getArticulos(8);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'spray','titulo'=>'Pinturas en spray']);
-});
-Route::any('/dis', function () {
-    $articulos=Articulos::getArticulos(9);
-    return view('articulos',['articulos'=>$articulos,'categoria'=>'disolventes','titulo'=>'Disolventes']);
-});
-Route::any('/info_articulo', function (Request $req) {
-    $articulo=Articulos::getArticulo($req->get('codigo'));
-    return view('info_articulo',['art'=>$articulo]);
-});
-Route::any('/Ofertas', function () {
-    $ofertas=Articulos::getOfertas();
-    return view('articulos',['articulos'=>$ofertas,'titulo'=>'Ofertas']);
-});
-Route::any('/Destacados', function () {
-    $ofertas=Articulos::getDestacados();
-    return view('articulos',['articulos'=>$ofertas,'titulo'=>'Destacados']);
-});
-Route::any('/Nuevos', function () {
-    $nuevos=Articulos::getNuevos();
-    return view('articulos',['articulos'=>$nuevos,'titulo'=>'Nuevos']);
-});
-Route::resource('/carrito', 'CartController');
+
+Route::resource('/carrito', 'CartController')->middleware('auth');
 
 Auth::routes();
 
