@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\C_Articulos;
 use App\Http\Controllers\C_Categorias;
+use App\Http\Controllers\C_User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +70,22 @@ Route::get('/Destacados', function () {
 Route::get('/Nuevos', function () {
     return C_Articulos::showNuevos();
 });
-Route::post('/eliminarCarrito', function () {
+// Route::post('/eliminarCarrito', function () {
    
-});
+// });
+Route::get('/ajustes', function () {
+   return C_User::showAjustes();
+})->middleware('auth');
+Route::get('/confirmarEliminar', function () {
+    return C_User::showConfirmarEliminar();
+ })->middleware('auth');
+Route::get('/showModificar', function () {
+    return C_User::showModificar();
+})->middleware('auth');
+Route::post('/modificar', function () {
+    return C_User::modificar();
+})->middleware('auth');
+
 
 Route::resource('/carrito', 'CartController')->middleware('auth');
 

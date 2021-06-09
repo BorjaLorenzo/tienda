@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -51,7 +52,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function getUsuario($email){
-        return DB::table('users')->where('email','=',$email)->get();
+    public static function getUsuario($id)
+    {
+        return DB::table('users')->where('id', '=', $id)->get();
+    }
+    public static function delUsuario($id)
+    {
+        DB::table('users')->where('id', '=', $id)->delete();
+    }
+    public static function modUsuario($arr,$id)
+    {
+        DB::table('users')->where('id', '=', $id)->update([
+            'name' => $arr->name,
+            'email' => $arr->email,
+            'password' => Hash::make($arr->password),
+            'usuario' => $arr->usuario,
+            'telefono' => $arr->telefono,
+            'apellidos' => $arr->apellidos,
+            'nif' => $arr->nif,
+            'direccion' => $arr->direccion,
+            'cp' => $arr->cp,
+            'poblacion' => $arr->poblacion,
+            'provincia' => $arr->provincia
+        ]);
     }
 }
