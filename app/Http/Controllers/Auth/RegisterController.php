@@ -53,6 +53,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'usuario' => ['required','string','max:255'],
+            'apellidos' => ['required','string','max:255'],
+            'dni' => ['required','string','max:255'],
+            'direccion' => ['required','string','max:255'],
+            'provincia' => ['required','string','max:255'],
+            'poblacion' => ['required','string','max:255'],
+            'cp' => ['required','digits_between:0,5'],
+            'telefono' => ['required','string','max:255']
         ]);
     }
 
@@ -75,8 +83,7 @@ class RegisterController extends Controller
             'provincia' => $data['provincia'],
             'poblacion' => $data['poblacion'],
             'cp' => $data['cp'],
-            'telefono' => $data['telefono'],
-            'usuario'=>$data['usuario']
+            'telefono' => $data['telefono']
         ]);
     }
 }

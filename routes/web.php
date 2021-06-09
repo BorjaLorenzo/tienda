@@ -19,75 +19,25 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', function () {
-    return C_Articulos::showDestacados();
-});
-Route::get('/categorias', function () {
-    return C_Categorias::showCategorias();
-});
-Route::get('/ps', function () {
-    return C_Articulos::showArticulos(0,'suelos','Pinturas para suelo');
-});
-Route::get('/ppls', function () {
-    return C_Articulos::showArticulos(1,'plasticas','Pinturas plasticas');
-});
-Route::get('/pf', function () {
-    return C_Articulos::showArticulos(2,'fachada','Pinturas para fachadas');
-});
-Route::get('/pps', function () {
-    return C_Articulos::showArticulos(3,'piscina','Pinturas para piscinas');
-});
-Route::get('/pm', function () {
-    return C_Articulos::showArticulos(4,'madera','Pinturas para madera');
-});
-Route::get('/pmt', function () {
-    return C_Articulos::showArticulos(5,'metal','Pinturas para metal');
-});
-Route::get('/pazu', function () {
-    return C_Articulos::showArticulos(6,'azulejos','Pinturas para azulejos');
-});
-Route::get('/pesp', function () {
-    return C_Articulos::showArticulos(7,'especiales','Pinturas especiales');
-});
-Route::get('/psp', function () {
-    return C_Articulos::showArticulos(8,'spray','Pinturas en spray');
-});
-Route::get('/dis', function () {
-    return C_Articulos::showArticulos(9,'disolventes','Disolventes');
-});
-Route::get('/info_articulo', function (Request $req) {
-    return C_Articulos::infoArticulo($req->get('codigo'));
-});
-Route::get('/Ofertas', function () {
-    return C_Articulos::showOfertas();
-});
-Route::get('/Destacados', function () {
-    return C_Articulos::showDestacados();
-});
-Route::get('/Nuevos', function () {
-    return C_Articulos::showNuevos();
-});
-// Route::post('/eliminarCarrito', function () {
-   
-// });
-Route::get('/ajustes', function () {
-   return C_User::showAjustes();
-})->middleware('auth');
-Route::get('/confirmarEliminar', function () {
-    return C_User::showConfirmarEliminar();
- })->middleware('auth');
-Route::get('/showModificar', function () {
-    return C_User::showModificar();
-})->middleware('auth');
-Route::post('/modificar', function () {
-    return C_User::modificar();
-})->middleware('auth');
 
+Route::get('/', [C_Articulos::class, 'showDestacados']);
+Route::get('/categorias', [C_Categorias::class, 'showCategorias']);
+Route::get('/Ofertas', [C_Articulos::class, 'showOfertas']);
+Route::get('/Destacados', [C_Articulos::class, 'showDestacados']);
+Route::get('/Nuevos', [C_Articulos::class, 'showNuevos']);
+Route::get('/confirmarEliminar', [C_User::class, 'showConfirmarEliminar'])->middleware('auth');
+Route::get('/showModificar', [C_User::class, 'showModificar'])->middleware('auth');
+Route::get('/ajustes', [C_User::class, 'showAjustes'])->middleware('auth');
+Route::post('/modificar', [C_User::class, 'modificar'])->middleware('auth');
+Route::post('/eliminar', [C_User::class, 'eliminar'])->middleware('auth');
+
+Route::get('/{codigo}/{id}/{categoria}/{titulo}', 'C_Articulos@showArticulos');
+Route::get('info_articulo/{codigo}', 'C_Articulos@infoArticulo');
 
 Route::resource('/carrito', 'CartController')->middleware('auth');
+Route::post('/vaciar', 'CartController@clear')->middleware('auth');
+Route::post('/addArticulo', 'CartController@store')->middleware('auth');
+Route::post('/eliminarArticuloCarrito', 'CartController@destroy')->middleware('auth');
 
 Auth::routes();
 

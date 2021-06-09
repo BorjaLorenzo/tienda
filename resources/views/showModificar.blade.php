@@ -13,7 +13,7 @@
                                 <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$datos[0]->name}}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name', $datos[0]->name)}}" required autocomplete="name" autofocus>
     
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -27,7 +27,7 @@
                                 <label for="apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{$datos[0]->apellidos}}" required autocomplete="apellidos" autofocus>
+                                    <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{old('apellidos', $datos[0]->apellidos)}}" required autocomplete="apellidos" autofocus>
     
                                     @error('apellidos')
                                         <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                                 <label for="usuario" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="usuario" type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{$datos[0]->usuario}}" required autocomplete="usuario" autofocus>
+                                    <input id="usuario" type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{old('usuario', $datos[0]->usuario)}}" required autocomplete="usuario" autofocus>
     
                                     @error('usuario')
                                         <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$datos[0]->email}}" required autocomplete="email">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email', $datos[0]->email)}}" required autocomplete="email">
     
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                                 <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('NIF/DNI') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{$datos[0]->nif}}" required autocomplete="dni" autofocus>
+                                    <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{old('dni', $datos[0]->nif)}}" required autocomplete="dni" autofocus>
     
                                     @error('dni')
                                         <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
                                 <label for="direccion" class="col-md-4 col-form-label text-md-right">{{ __('Direccion') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{$datos[0]->direccion}}" required autocomplete="direccion" autofocus>
+                                    <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{old('direccion', $datos[0]->direccion)}}" required autocomplete="direccion" autofocus>
     
                                     @error('direccion')
                                         <span class="invalid-feedback" role="alert">
@@ -116,7 +116,7 @@
                                 <label for="provincia" class="col-md-4 col-form-label text-md-right">{{ __('Provincia') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="provincia" type="text" class="form-control @error('provincia') is-invalid @enderror" name="provincia" value="{{$datos[0]->provincia}}" required autocomplete="provincia" autofocus>
+                                    <input id="provincia" type="text" class="form-control @error('provincia') is-invalid @enderror" name="provincia" value="{{old('provincia', $datos[0]->provincia)}}" required autocomplete="provincia" autofocus>
     
                                     @error('provincia')
                                         <span class="invalid-feedback" role="alert">
@@ -129,7 +129,7 @@
                                 <label for="poblacion" class="col-md-4 col-form-label text-md-right">{{ __('Poblacion') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="poblacion" type="text" class="form-control @error('poblacion') is-invalid @enderror" name="poblacion" value="{{$datos[0]->poblacion}}" required autocomplete="poblacion" autofocus>
+                                    <input id="poblacion" type="text" class="form-control @error('poblacion') is-invalid @enderror" name="poblacion" value="{{old('poblacion', $datos[0]->poblacion)}}" required autocomplete="poblacion" autofocus>
     
                                     @error('poblacion')
                                         <span class="invalid-feedback" role="alert">
@@ -142,7 +142,7 @@
                                 <label for="cp" class="col-md-4 col-form-label text-md-right">{{ __('Codigo Postal') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="cp" type="text" class="form-control @error('cp') is-invalid @enderror" name="cp" value="{{$datos[0]->cp}}" required autocomplete="cp" autofocus>
+                                    <input id="cp" type="text" class="form-control @error('cp') is-invalid @enderror" name="cp" value="{{old('cp', $datos[0]->cp)}}" required autocomplete="cp" autofocus>
     
                                     @error('cp')
                                         <span class="invalid-feedback" role="alert">
@@ -155,7 +155,7 @@
                                 <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{$datos[0]->telefono}}" required autocomplete="telefono" autofocus>
+                                    <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono', $datos[0]->telefono)}}" required autocomplete="telefono" autofocus>
     
                                     @error('telefono')
                                         <span class="invalid-feedback" role="alert">

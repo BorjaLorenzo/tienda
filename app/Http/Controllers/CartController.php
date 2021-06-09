@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Articulos;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -37,18 +38,21 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $idUsuario=session('id');
+        $articulo=Articulos::getArticuloById($request->id);
+
+        if($articulo->descuento>0){
+            $precio=round($articulo->precio-($articulo->precio*$articulo->descuento/100),2);
+        }else{
+            $precio=$articulo->precio;
+        }
         Cart::add(array(
-            'id' => $request->id ? $request->id : '1', // inique row ID
-            'name' => $request->name ? $request->name : 'example',
-            'price' => $request->price ? $request->price : 20.20,
-            'quantity' => $request->quantity ? $request->quantity : 1,
-            'attributes' => array(
-                'color' => $request->color ? $request->color : 'green',
-                'size' => $request->size ? $request->size : 'Big',
-            )
+            'id' => $articulo->id,
+            'name' => $articulo->nombre ,
+            'price' => $precio,
+            'quantity' => $request->cantidad,
+            'descr'=>$articulo->descripcion
         ));
-        return back();
+        return redirect('carrito');
     }
 
     /**
@@ -99,9 +103,18 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($cart)
+    public function destroy(Request $request)
     {
-        Cart::remove($cart);
+        Cart::remove($request->input('id'));
+        return back();
+    }
+    /**
+     * Clean the cart storage
+     *
+     * @return void
+     */
+    public function clear(){
+        Cart::clear();
         return back();
     }
 }

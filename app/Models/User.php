@@ -51,29 +51,47 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    /**
+     * Devuelve el usuario con el ID indicado por parametro
+     *
+     * @param [int] $id
+     * @return void
+     */
     public static function getUsuario($id)
     {
         return DB::table('users')->where('id', '=', $id)->get();
     }
+    /**
+     * Borra el usuario con el ID indicado por parametro
+     *
+     * @param [int] $id
+     * @return void
+     */
     public static function delUsuario($id)
     {
         DB::table('users')->where('id', '=', $id)->delete();
     }
+    /**
+     * Modifica el usuario en funcion al id, recibe una coleccion con los nuevos datos
+     *
+     * @param [Request] $arr
+     * @param [int] $id
+     * @return void
+     */
     public static function modUsuario($arr,$id)
     {
         DB::table('users')->where('id', '=', $id)->update([
-            'name' => $arr->name,
-            'email' => $arr->email,
-            'password' => Hash::make($arr->password),
-            'usuario' => $arr->usuario,
-            'telefono' => $arr->telefono,
-            'apellidos' => $arr->apellidos,
-            'nif' => $arr->nif,
-            'direccion' => $arr->direccion,
-            'cp' => $arr->cp,
-            'poblacion' => $arr->poblacion,
-            'provincia' => $arr->provincia
+            'name' => $arr->input('name'),
+            'email' => $arr->input('email'),
+            'password' => Hash::make($arr->input('password')),
+            'usuario' => $arr->input('usuario'),
+            'telefono' => $arr->input('telefono'),
+            'apellidos' => $arr->input('apellidos'),
+            'nif' => $arr->input('dni'),
+            'direccion' => $arr->input('direccion'),
+            'cp' => $arr->input('cp'),
+            'poblacion' => $arr->input('poblacion'),
+            'provincia' => $arr->input('provincia')
         ]);
     }
 }

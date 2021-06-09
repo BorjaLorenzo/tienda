@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form action="" method="post">
+        <form action="{{url('addArticulo')}}" method="post">
+            @csrf
             <div class="row">
                 <div class="col-4">
                     <img src="<?= asset('img/'.$art->imagen.''); ?>" width="300">
@@ -25,7 +26,7 @@
                             <input type="number" name="cantidad" id="" placeholder="1">
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary" type="submit" name="action">Anadir al carrito
+                            <button class="btn btn-primary" type="submit">Anadir al carrito
                               </button>
                         </div>
                     </div>

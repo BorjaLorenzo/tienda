@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        {{-- <div class="row">
+        <div class="row">
             <div class="col">
-                <form method="POST" action="">
+                {{-- <form method="POST" action="">
                     @csrf
                     <div class="form-group">
                         <label for="id">ID</label>
@@ -52,10 +52,10 @@
                             <th scope="col">Precio</th>
                             <th scope="col">Cantidad</th>
                             <th scope="row">
-                                <form method="POST" action="{{url('eliminarCarrito')}}">
+                            <form method="POST" action="{{url('vaciar')}}">
                                 {{-- @method('DELETE') --}}
                                 @csrf
-                                <button type="submit">Eliminar</button>
+                                <button type="submit">Vaciar</button>
                             </form>
                         </th>
                         </tr>
@@ -63,10 +63,13 @@
                     <tbody>
                         @foreach (Cart::getContent() as $item)
                         <tr>
-                            <th scope="row">
-                                <button>Eliminar</button>
-                            </th>
-
+                            <td>
+                            <form method="post" action="{{url('eliminarArticuloCarrito')}}">
+                                <input type="text" name="id" id="" value="{{$item->id}}" hidden>
+                                @csrf
+                                <button type="submit">Eliminar</button>
+                            </form>
+                            </td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->price}}</td>
                             <td>{{$item->quantity}}</td>

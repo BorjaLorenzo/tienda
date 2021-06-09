@@ -9,7 +9,7 @@
           <div class="card-body">
             <h5 class="card-title">{{$cat->nombre}}</h5>
             <p class="card-text">{{$cat->anuncio}}</p>
-            <a href="<?= url($cat->codigo)?>" class="btn btn-primary">{{$cat->nombre}}</a>
+            <a href="<?= url($cat->codigo."/".$cat->id."/".$cat->carpeta."/".$cat->anuncio)?>" class="btn btn-primary">{{$cat->nombre}}</a>
           </div>
         </div>
     </div>
